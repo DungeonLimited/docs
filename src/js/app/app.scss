@@ -1,0 +1,51 @@
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  display: flex;
+}
+
+.container {
+
+  &.full-screen,
+  .full-screen {
+    min-height: 100%;
+    max-width: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    flex: 1;
+  }
+
+  font-family: 'Percola', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  .scrollable {
+    overflow-y: auto;
+  }
+}
+
+.flippedX {
+  transform: scale(-1, 1);
+}
+
+.flippedY {
+  transform: scale(1, -1);
+}
+
+.flipped {
+  transform: scale(-1, -1);
+}
+
+.md-toolbar.no-login {
+  .md-title {
+    flex: 1;
+  }
+}
+
+.main-icon {
+
+}

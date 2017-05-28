@@ -1,0 +1,42 @@
+{
+  "name": "darl-docs",
+  "description": "Documentation for DARL",
+  "title": "DARL Docs",
+  "version": "0.1.0",
+  "author": "St-Ex",
+  "license": "MIT",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
+    "build": "cross-env NODE_ENV=development SW=true webpack --progress --hide-modules",
+    "prod": "cross-env NODE_ENV=production SW=true webpack"
+  },
+  "dependencies": {
+    "flag-icon-css": "^2.8.0",
+    "material-design-icons": "^3.0.1",
+    "moment": "^2.18.1",
+    "offline-plugin": "^4.8.0",
+    "rpg-awesome": "^0.1.1",
+    "vue": "^2.2.1",
+    "vue-i18n": "^5.0.3",
+    "vue-material": "^0.7.1",
+    "vue-router": "^2.3.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.0.0",
+    "babel-loader": "^6.0.0",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-latest": "^6.0.0",
+    "clean-webpack-plugin": "^0.1.16",
+    "cross-env": "^3.0.0",
+    "css-loader": "^0.25.0",
+    "file-loader": "^0.9.0",
+    "html-webpack-plugin": "^2.28.0",
+    "node-sass": "^4.5.0",
+    "null-loader": "^0.1.1",
+    "sass-loader": "^5.0.1",
+    "vue-loader": "^11.1.4",
+    "vue-template-compiler": "^2.2.1",
+    "webpack": "^2.2.0",
+    "webpack-dev-server": "^2.2.0"
+  }
+}

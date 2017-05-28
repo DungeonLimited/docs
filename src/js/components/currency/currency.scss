@@ -1,0 +1,9 @@
+.currency {
+  display: block;
+  white-space: nowrap;
+
+  .currency-suffix {
+    font-size: 65%;
+    vertical-align: super;
+  }
+}

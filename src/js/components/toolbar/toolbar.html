@@ -1,0 +1,16 @@
+<md-toolbar class="md-dense no-login">
+    <md-icon :md-src="logo"></md-icon>
+    <h2 class="md-title">{{ title }}</h2>
+    <span id="version" class="subtitle">{{ $t('Released on') }} {{ update }}</span>
+    <md-menu>
+        <md-button class="md-icon-button" md-menu-trigger>
+            <md-icon :md-iconset="'flag-icon flag-icon-'+current"></md-icon>
+        </md-button>
+        <md-menu-content>
+            <md-menu-item v-for="(obj,lang) in langs" :key="lang" @selected="change(lang)">
+                <md-icon :md-iconset="'flag-icon flag-icon-'+obj.flag"></md-icon>
+                <span>{{ obj.name }}</span>
+            </md-menu-item>
+        </md-menu-content>
+    </md-menu>
+</md-toolbar>

@@ -1,0 +1,85 @@
+<div class="scrollable">
+    <h1>{{ $t('Roles') }}</h1>
+    <md-table v-once>
+        <md-table-header>
+            <md-table-row>
+                <md-table-head>{{ $t('Symbol') }}</md-table-head>
+                <md-table-head>{{ $t('Name') }}</md-table-head>
+                <md-table-head>{{ $t('Strong vs.') }}</md-table-head>
+                <md-table-head>{{ $t('Weak vs.') }}</md-table-head>
+            </md-table-row>
+        </md-table-header>
+
+        <md-table-body>
+            <md-table-row v-for="role in roles" :key="role.name">
+                <md-table-cell>
+                    <md-icon :md-iconset="role.icon">
+                        <md-tooltip md-direction="bottom">{{ $t(role.name) }}</md-tooltip>
+                    </md-icon>
+                </md-table-cell>
+                <md-table-cell>{{ $t(role.name) }}</md-table-cell>
+                <md-table-cell>
+                    <md-icon v-for="subRole in role.strength" :key="subRole.id" :md-iconset="subRole.icon">
+                        <md-tooltip md-direction="bottom">{{ $t(subRole.name) }}</md-tooltip>
+                    </md-icon>
+                </md-table-cell>
+                <md-table-cell>
+                    <md-icon v-for="subRole in role.weakness" :key="subRole.id" :md-iconset="subRole.icon">
+                        <md-tooltip md-direction="bottom">{{ $t(subRole.name) }}</md-tooltip>
+                    </md-icon>
+                </md-table-cell>
+            </md-table-row>
+        </md-table-body>
+    </md-table>
+
+    <h1>{{ $t('Group example') }}</h1>
+    <form>
+        <md-input-container>
+            <label>Group size</label>
+            <md-input v-model="groupSize" type="number" @input="newGroup"></md-input>
+        </md-input-container>
+        <md-button class="md-icon-button" @click.native="newGroup">
+            <md-icon>refresh</md-icon>
+        </md-button>
+    </form>
+    <md-table>
+        <md-table-header>
+            <md-table-row>
+                <md-table-head>{{ $t('Name') }}</md-table-head>
+                <md-table-head>{{ $t('Roles') }}</md-table-head>
+                <md-table-head>{{ $t('Stats') }}</md-table-head>
+            </md-table-row>
+        </md-table-header>
+
+        <md-table-body>
+            <md-table-row v-for="man in group.members" :key="man.name">
+                <md-table-cell>{{ man.name }}</md-table-cell>
+                <md-table-cell>
+                    <md-icon v-for="role in man.roles" :key="role.id" :md-iconset="role.icon">
+                        <md-tooltip md-direction="bottom">{{ $t(role.name) }}</md-tooltip>
+                    </md-icon>
+                </md-table-cell>
+                <md-table-cell>
+                    <template v-for="stat in man.orderedStats">
+                        {{stat.nb}}
+                        <md-icon :md-iconset="stat.role.icon">
+                            <md-tooltip md-direction="bottom">{{ $t(stat.role.name) }}</md-tooltip>
+                        </md-icon>
+                    </template>
+                </md-table-cell>
+            </md-table-row>
+            <md-table-row>
+                <md-table-cell>{{ $t('Total') }}</md-table-cell>
+                <md-table-cell>{{ group.size }}</md-table-cell>
+                <md-table-cell>
+                    <template v-for="stat in group.orderedStats">
+                        {{stat.nb}}
+                        <md-icon :md-iconset="stat.role.icon">
+                            <md-tooltip md-direction="bottom">{{ $t(stat.role.name) }}</md-tooltip>
+                        </md-icon>
+                    </template>
+                </md-table-cell>
+            </md-table-row>
+        </md-table-body>
+    </md-table>
+</div>
