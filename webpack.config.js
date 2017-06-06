@@ -13,7 +13,7 @@ module.exports = {
   entry: './src/js/main.js',
   output: {
     path: DIST_FOLDER,
-    filename: 'build.js?[hash]'
+    filename: 'build.js'
   },
   module: {
     rules: [

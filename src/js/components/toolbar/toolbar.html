@@ -1,16 +1,45 @@
-<md-toolbar class="md-dense no-login">
-    <md-icon :md-src="logo"></md-icon>
-    <h2 class="md-title">{{ title }}</h2>
-    <span id="version" class="subtitle">{{ $t('Released on') }} {{ update }}</span>
-    <md-menu>
-        <md-button class="md-icon-button" md-menu-trigger>
-            <md-icon :md-iconset="'flag-icon flag-icon-'+current"></md-icon>
+<div class="toolbar">
+    <md-toolbar class="md-dense no-login">
+        <md-button class="md-icon-button" @click.native="$refs.sidenav.toggle()">
+            <md-icon>menu</md-icon>
         </md-button>
-        <md-menu-content>
-            <md-menu-item v-for="(obj,lang) in langs" :key="lang" @selected="change(lang)">
-                <md-icon :md-iconset="'flag-icon flag-icon-'+obj.flag"></md-icon>
-                <span>{{ obj.name }}</span>
-            </md-menu-item>
-        </md-menu-content>
-    </md-menu>
-</md-toolbar>
+
+        <h2 class="md-title">
+            <md-icon :md-src="logo"></md-icon>
+            {{ title }}
+        </h2>
+        <span id="version" class="subtitle">{{ $t('Released on') }} {{ update }}</span>
+        <md-menu>
+            <md-button class="md-icon-button" md-menu-trigger>
+                <md-icon :md-iconset="'flag-icon flag-icon-'+current"></md-icon>
+            </md-button>
+            <md-menu-content>
+                <md-menu-item v-for="(obj,lang) in langs" :key="lang" @selected="change(lang)">
+                    <md-icon :md-iconset="'flag-icon flag-icon-'+obj.flag"></md-icon>
+                    <span>{{ obj.name }}</span>
+                </md-menu-item>
+            </md-menu-content>
+        </md-menu>
+    </md-toolbar>
+
+    <md-sidenav class="md-left" ref="sidenav">
+        <md-toolbar class="md-large">
+            <md-icon class="sidenav-icon" :md-src="logo"></md-icon>
+        </md-toolbar>
+
+        <md-list>
+            <md-list-item>
+                <router-link to="home" @click.native="$refs.sidenav.close()">Home</router-link>
+            </md-list-item>
+            <md-list-item>
+                <router-link to="group" @click.native="$refs.sidenav.close()">{{ $t('Group') }}</router-link>
+            </md-list-item>
+            <md-list-item>
+                <router-link to="adventurer" @click.native="$refs.sidenav.close()">{{ $t('Adventurer') }}</router-link>
+            </md-list-item>
+            <md-list-item>
+                <router-link to="roles" @click.native="$refs.sidenav.close()">{{ $t('Roles') }}</router-link>
+            </md-list-item>
+        </md-list>
+    </md-sidenav>
+</div>

@@ -1,0 +1,43 @@
+<div class="scrollable">
+    <md-table>
+        <md-table-header>
+            <md-table-row>
+                <md-table-head>{{ $t('Race') }}</md-table-head>
+                <md-table-head>{{ $t('Role') }}</md-table-head>
+                <md-table-head>{{ $t('Male') }}</md-table-head>
+                <md-table-head>{{ $t('Female') }}</md-table-head>
+            </md-table-row>
+        </md-table-header>
+
+        <md-table-body>
+            <md-table-row v-for="origin in origins" :key="origin.id">
+                <md-table-cell>{{ origin.name }}</md-table-cell>
+                <md-table-cell>
+                    <stats-icon :value="origin"></stats-icon>
+                </md-table-cell>
+                <md-table-cell>{{ origin.dict(0) }}</md-table-cell>
+                <md-table-cell>{{ origin.dict(1) }}</md-table-cell>
+            </md-table-row>
+        </md-table-body>
+    </md-table>
+    <h1>{{ $t('Compatibility') }}</h1>
+    <md-table>
+        <md-table-header>
+            <md-table-row>
+                <md-table-head>{{ $t('Origins') }}</md-table-head>
+                <md-table-head v-for="job in jobs" :key="job.id">{{ $t(job.name) }}</md-table-head>
+            </md-table-row>
+        </md-table-header>
+        <md-table-body>
+            <md-table-row v-for="origin in origins" :key="origin.id">
+                <md-table-cell>{{ origin.name }}</md-table-cell>
+                <md-table-cell v-for="job in jobs" :key="job.id">
+                    <template v-if="job.compatibility[origin.id]">
+                        <stats-icon :value="stats(origin,job)"></stats-icon>
+                    </template>
+                    <md-icon v-else>not_interested</md-icon>
+                </md-table-cell>
+            </md-table-row>
+        </md-table-body>
+    </md-table>
+</div>

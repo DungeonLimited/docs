@@ -6,7 +6,7 @@ export default {
   /**
    * Set up material plugin and theme
    */
-  setUp() {
+  setUp () {
     Vue.use(VueMaterial)
 
     // Theme
@@ -16,12 +16,12 @@ export default {
         background: 'white',
         primary: {
           color: 'cyan',
-          hue: 500
+          hue: 800,
         },
         secondary: 'cyan',
-        warn: 'deep-orange'
-      }
+        warn: 'deep-orange',
+      },
     )
     Vue.material.setCurrentTheme('darl')
-  }
+  },
 }

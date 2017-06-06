@@ -1,0 +1,7 @@
+<div>
+    <template v-for="stat in value.orderedStats">
+        <template v-for="n in stat.nb">
+            <role-icon :role-id="stat.role.id" :key="stat.role.id+n"></role-icon>
+        </template>
+    </template>
+</div>

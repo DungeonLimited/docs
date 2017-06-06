@@ -1,45 +1,34 @@
-import * as Roles from './roles'
+import Jobs, { randJob } from './jobs'
+import Origins, { randOrigin } from './origins'
+import { WithRole } from './roles'
 
-const DEFAULT_ROLES = 2;
+export default class Adventurer extends WithRole {
+  constructor (name, originId, jobId) {
+    super()
+    this.origin = Origins[originId || randOrigin()]
+    this.job = Jobs[jobId || randJob(this.origin)]
 
-export default class Adventurer {
-
-  constructor (name, roles) {
-    this.name = name ? name : 'Noname the rng' + Math.floor(Math.random() * 89999 + 10000);
-    if (!roles) {
-      roles = []
-      for (let i = 0; i < DEFAULT_ROLES; i++) {
-        let random = Math.floor(Math.random() * 5);
-        roles.push(Object.values(Roles)[ random ])
-      }
-    }
-    this.roles = []
-    this.stats = {
-      tank: 0,
-      melee: 0,
-      range: 0,
-      cunning: 0,
-      magic: 0
-    }
-    console.debug(roles)
-    roles.forEach(role => this.addRole(role))
+    this.name = name || this.origin.dict(Math.random() >= 0.5)
+    console.log('[Adventurer]', this.name)
   }
 
-  /**
-   * Add a role to the adventurer
-   * @param role
-   */
-  addRole (role) {
-    this.roles.push(role)
-    console.log('[Adv]', 'addRole', this)
-    role.strength.forEach(role => this.stats[ role.id ]++)
-    role.weakness.forEach(role => this.stats[ role.id ]--)
+  get origin () { return this._origin }
+
+  set origin (value) {
+    this._origin = value
+    this.reset()
+    this.merge(this.origin)
+    this.merge(this._job)
   }
 
-  get orderedStats () {
-    return Object.entries(this.stats)
-      .map(([ id, nb ]) => ({ role: Roles[ id ], nb }))
-      .filter(stat => stat.nb)
-      .sort((a, b) => b.nb - a.nb)
+  get job () {
+    return this._job
+  }
+
+  set job (value) {
+    this._job = value
+    this.reset()
+    this.merge(this.origin)
+    this.merge(this._job)
   }
 }

@@ -1,22 +1,24 @@
-import * as Roles from 'js/gameMechanism/roles.js'
+import Roles from 'js/gameMechanism/roles.js'
 import Group from 'js/gameMechanism/group'
+import Origins from 'js/gameMechanism/origins'
+
 export default {
   name: 'Group',
 
-  data(){
+  data () {
     return {
+      origins: Origins,
       roles: Roles,
       groupSize: 4,
-      group: new Group(4)
+      group: new Group(4),
     }
   },
 
   methods: {
-    newGroup()
-    {
-      let size = parseInt(this.groupSize);
-      if (!size) size = 1;
-      this.group = new Group(size);
-    }
-  }
+    newGroup () {
+      let gSize = parseInt(this.groupSize)
+      if (!gSize) gSize = 1
+      this.group = new Group(gSize)
+    },
+  },
 }

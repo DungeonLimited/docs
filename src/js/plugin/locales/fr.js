@@ -8,6 +8,6 @@ export default {
   'Tank': 'Tank',
 
   tax: {
-    ex: 'H.T.'
-  }
+    ex: 'H.T.',
+  },
 }

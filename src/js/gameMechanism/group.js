@@ -1,18 +1,16 @@
+import Origins from 'js/gameMechanism/origins'
 import Adventurer from './adventurer'
-import * as Roles from './roles'
+import { WithRole } from './roles'
 
-export default class Group {
-  constructor (size) {
+export default class Group extends WithRole {
+  constructor (groupSize) {
+    super()
     this.members = {}
-    this.stats = {
-      tank: 0,
-      melee: 0,
-      range: 0,
-      cunning: 0,
-      magic: 0
-    }
-    if (size) {
-      for (let i = 0; i < size; i++) {
+
+    if (groupSize) {
+      let iteration = 0
+      while (this.size < groupSize && iteration < 1000) {
+        iteration++
         this.add(new Adventurer())
       }
     }
@@ -23,8 +21,13 @@ export default class Group {
    * @param adventurer
    */
   add (adventurer) {
-    this.members[ adventurer.name ] = adventurer
-    Object.entries(adventurer.stats).forEach(([ id, nb ]) => this.stats[ id ] += nb)
+    this.members[adventurer.name] = adventurer
+    if (this.validGroup()) {
+      this.merge(adventurer)
+    } else {
+      console.debug('Not valid group')
+      delete this.members[adventurer.name]
+    }
   }
 
   /**
@@ -35,10 +38,40 @@ export default class Group {
     return Object.values(this.members).length
   }
 
-  get orderedStats () {
-    return Object.entries(this.stats)
-      .map(([ id, nb ]) => ({ role: Roles[ id ], nb }))
-      .filter(stat => stat.nb)
-      .sort((a, b) => b.nb - a.nb)
+  /**
+   * Returns true if group is valid
+   * @return {boolean}
+   */
+  validGroup () {
+    for (let rule in rules) {
+      if (!rules[rule](this)) {
+        return false
+      }
+    }
+    return true
+  }
+
+  numberOf (origin) {
+    return Object.values(this.members).reduce(
+      (total, member) => total + (member.origin.id === origin.id | 0), 0)
+  }
+
+  numberOfElves () {
+    return Object.values(this.members).reduce(
+      (total, member) => total +
+      (member.origin.id === Origins.darkElf.id | 0) +
+      (member.origin.id === Origins.highElf.id | 0) +
+      (member.origin.id === Origins.woodElf.id | 0)
+      , 0)
   }
 }
+
+const rules = [
+  // No orcs with elves
+  (group) => !(group.numberOf(Origins.orc) && group.numberOfElves()),
+  // No orcs with gnomes
+  (group) => !(group.numberOf(Origins.orc) && group.numberOf(Origins.gnome)),
+  // No more dwarves than elves (and
+  (group) => !group.numberOf(Origins.dwarf) || !group.numberOfElves() ||
+  group.numberOf(Origins.dwarf) === group.numberOfElves(),
+]

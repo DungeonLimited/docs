@@ -7,33 +7,32 @@ require('manifest.json')
 export default {
   state: {
     refreshing: false,
-    online: navigator.onLine
+    online: navigator.onLine,
   },
 
   /**
    * If production environment, add service worker
    */
-  registerServiceWorker() {
+  registerServiceWorker () {
     /* global process */
     if (process.env.SW) {
       console.log('[SW] Register service worker')
       OfflinePluginRuntime.install({
-        onUpdateReady()  {
+        onUpdateReady () {
           console.log('SW Event:', 'onUpdateReady')
           // Tells to new SW to take control immediately
           OfflinePluginRuntime.applyUpdate()
         },
 
-        onUpdated(){
+        onUpdated () {
           return window.location.reload()
         },
 
-        onUpdateFailed() {
+        onUpdateFailed () {
           console.warn('[SW] Fail update app')
-        }
+        },
       })
-    }
-    else {
+    } else {
       console.warn('[SW] Do not register service worker')
     }
   },
@@ -41,7 +40,7 @@ export default {
   /**
    * Sets up service wworker
    */
-  async setUp(){
+  async setUp () {
     this.registerServiceWorker()
   },
 }

@@ -1,0 +1,9 @@
+<div class="scrollable">
+    <h1>{{ $t('Roles') }}</h1>
+    <md-list>
+        <md-list-item v-for="role in roles" :key="role.name">
+            <role-icon :role-id="role.id"></role-icon>
+            <span>{{ $t(role.name) }}</span>
+        </md-list-item>
+    </md-list>
+</div>
