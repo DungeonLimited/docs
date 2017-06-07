@@ -9,8 +9,8 @@ export default {
     return {
       origins: Origins,
       roles: Roles,
-      groupSize: 4,
-      group: new Group(4),
+      groupSize: 6,
+      group: new Group(6),
     }
   },
 
