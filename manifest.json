@@ -1,0 +1,30 @@
+{
+  "short_name": "DARL",
+  "name": "DARL",
+  "icons": [
+    {
+      "src": "darl-icon-32x16.png",
+      "type": "image/png",
+      "sizes": "32x16"
+    },
+    {
+      "src": "darl-icon-64x32.png",
+      "type": "image/png",
+      "sizes": "64x32"
+    },
+    {
+      "src": "darl-icon-128x64.png",
+      "type": "image/png",
+      "sizes": "128x64"
+    },
+    {
+      "src": "darl-icon-256x128.png",
+      "type": "image/png",
+      "sizes": "256x128"
+    }
+  ],
+  "display": "standalone",
+  "background_color": "teal",
+  "theme_color": "cyan",
+  "start_url": "./"
+}
