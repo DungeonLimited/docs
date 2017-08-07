@@ -9,6 +9,7 @@
     "dev": "npm run eslint && cross-env NODE_ENV=development webpack-dev-server --open --hot",
     "build": "npm run eslint && cross-env NODE_ENV=development SW=true webpack --progress --hide-modules",
     "prod": "npm run eslint && cross-env NODE_ENV=production SW=true webpack",
+    "deploy":"npm run prod && bash ./scripts/deploy.sh",
     "eslint": "node ./node_modules/eslint/bin/eslint.js src/ --fix"
   },
   "dependencies": {

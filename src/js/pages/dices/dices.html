@@ -1,0 +1,38 @@
+<div class="dices">
+    <h1>Versus Dice example</h1>
+    <md-table>
+        <md-table-header>
+            <md-table-row>
+                <md-table-head>Dices</md-table-head>
+                <md-table-head v-for="(dice, name) in greenDices" :key="name">{{name}}</md-table-head>
+            </md-table-row>
+        </md-table-header>
+        <md-table-body>
+            <md-table-row v-for="(redDice, redName) in redDices" :key="redName">
+                <md-table-cell>{{redName}}</md-table-cell>
+                <md-table-cell v-for="(greenDice, greenName) in greenDices" :key="greenName">
+                    <dices-stat :dice="merge(greenDice, redDice)"></dices-stat>
+                </md-table-cell>
+            </md-table-row>
+        </md-table-body>
+    </md-table>
+
+    <h1>Multi Dice example</h1>
+    <p>Each roll contains one neutral dice, plus n dungeon dice (negative) and n group dice (positive)</p>
+    <md-table>
+        <md-table-header>
+            <md-table-row>
+                <md-table-head>Dices</md-table-head>
+                <md-table-head v-for="n in 10" :key="n">{{n-1}}</md-table-head>
+            </md-table-row>
+        </md-table-header>
+        <md-table-body>
+            <md-table-row v-for="m in 10" :key="m">
+                <md-table-cell>{{m-1}}</md-table-cell>
+                <md-table-cell v-for="n in 10" :key="n">
+                    <dices-stat :dice="combine(n-1,m-1)"></dices-stat>
+                </md-table-cell>
+            </md-table-row>
+        </md-table-body>
+    </md-table>
+</div>

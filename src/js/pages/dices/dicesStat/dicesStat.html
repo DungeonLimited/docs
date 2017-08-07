@@ -1,0 +1,16 @@
+<div class="dices-stat">
+    <div :class="'main-stat '+stats[0].type">
+        <md-icon :md-iconset="icons[stats[0].type]"></md-icon>
+        <span>{{ round(stats[0].number) }}%</span>
+    </div>
+    <div class="others-stat">
+        <div>
+            <span>{{ round(stats[1].number) }}%</span>
+            <md-icon :md-iconset="icons[stats[1].type]"></md-icon>
+        </div>
+        <div>
+            <span>{{ round(stats[2].number) }}%</span>
+            <md-icon :md-iconset="icons[stats[2].type]"></md-icon>
+        </div>
+    </div>
+</div>

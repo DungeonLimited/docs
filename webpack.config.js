@@ -6,7 +6,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const OfflinePlugin = require('offline-plugin')
 
-const DIST_FOLDER = path.resolve(__dirname, './dist')
+const DIST_FOLDER = path.resolve(__dirname, 'dist')
 
 /* global module */
 module.exports = {

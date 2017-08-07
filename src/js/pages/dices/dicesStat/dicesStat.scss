@@ -1,0 +1,39 @@
+.dices-stat {
+  display: flex;
+  flex-direction: column;
+  color: #90A4AE;
+
+  .main-stat {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 150%;
+  }
+
+  .others-stat {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    div {
+      display: flex;
+      flex-direction: column;
+      flex: 1 100%;
+    }
+  }
+
+  .draw {
+    width: 100%;
+    color: #9E9E9E;
+  }
+
+  .loss {
+    width: 100%;
+    color: #FF5722;
+  }
+
+  .win {
+    width: 100%;
+    color: #4CAF50;
+  }
+}
